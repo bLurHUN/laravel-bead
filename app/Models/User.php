@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'admin'
     ];
 
     /**
@@ -43,5 +44,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
+
+    public function contests()
+    {
+        return $this->hasMany(Contest::class);
     }
 }
