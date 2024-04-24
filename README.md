@@ -2,7 +2,7 @@
 
 [ ] - Adatbázis és modellek 3 pont  
 [ ] - Seeder 3 pont  
-[ ] - Főoldal 2 pont  
+[x] - Főoldal 2 pont  
 [ ] - Karakterek listázása oldal 2 pont  
 [ ] - Karakter részletes adatai tartalmazó oldal 2 pont  
 [ ] - Új karakter létrehozása 6 pont  

@@ -16,12 +16,14 @@ class ContestSeeder extends Seeder
         $contests = collect();
         for ($i = 0; $i < 4; $i++) {
             $h = "";
-            for ($j = 0; $j < rand(2, 10); $j++) {
-                
-            }
+//            for ($j = 0; $j < rand(2, 10); $j++) {
+//
+//            }
             $contest = Contest::create([
                 'win' => rand(1, 2) == 2,
+                'history' => "test",
             ]);
+            $contests->add($contest);
         }
     }
 }

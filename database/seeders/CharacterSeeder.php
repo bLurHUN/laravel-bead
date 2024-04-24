@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Character;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CharacterSeeder extends Seeder
@@ -16,7 +15,7 @@ class CharacterSeeder extends Seeder
         $characters = collect();
         for ($i = 0; $i < 10; $i++) {
             $character = Character::create([
-                'name' => fake()->safari(),
+                'name' => fake()->name(),
                 'enemy' => rand(1, 10) < 2,
                 'defence' => rand(1, 20),
                 'strength' => rand(1, 20),
