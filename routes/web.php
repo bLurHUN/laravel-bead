@@ -29,6 +29,10 @@ Route::delete('/characters/{character}', [CharacterController::class, 'destroy']
 Route::get('/places', [PlaceController::class, 'index'])->name('places.index');
 Route::get('/places/{place}', [PlaceController::class, 'show'])->name('places.show');
 
+// Új helyszín
+Route::get('/places/a/create', [PlaceController::class, 'create'])->name('places.create');
+Route::post('/places', [PlaceController::class, 'store'])->name('places.store');
+
 // Helyszín módosítása
 Route::get('/places/{place}/edit', [PlaceController::class, 'edit'])->name('places.edit');
 Route::patch('/places/{place}', [PlaceController::class, 'update'])->name('places.update');

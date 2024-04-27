@@ -11,7 +11,7 @@ class Place extends Model
 
     protected $fillable = [
         'name',
-        'imageURI',
+        'imgURI',
     ];
 
     public function contests()

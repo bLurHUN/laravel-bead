@@ -36,7 +36,19 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Place::class);
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'imgURI' => 'required',
+        ], [
+            'name.required' => 'Adj meg egy nevet!',
+            'imgURI.required' => 'Add meg a kép URl-ét!',
+        ]);
+
+        $place = Place::create($validated);
+        Session::flash('place-created', $place->name);
+        return redirect()->route('places.index');
     }
 
     /**

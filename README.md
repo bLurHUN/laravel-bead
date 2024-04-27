@@ -11,6 +11,6 @@
 [ ] - Új mérkőzés létrehozása 3 pont  
 [ ] - Mérkőzés oldal 10 pont  
 [x] - Helyszínek listázása oldal 2 pont  
-[ ] - Új helyszín létrehozása 2 pont  
+[x] - Új helyszín létrehozása 2 pont  
 [x] - Helyszín módosítása 3 pont  
 [x] - Helyszín törlése 2 pont  

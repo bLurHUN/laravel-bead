@@ -29,4 +29,5 @@
         @endforeach
         </tbody>
     </table>
+    <a class="btn btn-success" href="{{ route('places.create') }}">Új helyszín</a>
 @endsection

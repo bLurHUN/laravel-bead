@@ -3,7 +3,6 @@
 @section('title', 'Hely szerkesztése')
 
 @section('content')
-
     <form action="{{ route('places.update', ['place' => $place ]) }}" method="POST">
         @csrf
         @method('PATCH')
@@ -24,5 +23,4 @@
 
         <button class="btn btn-success" type="submit">Mentés</button>
     </form>
-
 @endsection
