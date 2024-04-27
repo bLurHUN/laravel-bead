@@ -27,4 +27,8 @@
         @endforeach
         </tbody>
     </table>
+
+    @auth
+        <a class="btn btn-success" href="{{ route('characters.create') }}">Karakter létrehozása</a>
+    @endauth
 @endsection
