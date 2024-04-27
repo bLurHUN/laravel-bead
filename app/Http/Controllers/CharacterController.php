@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CharacterController extends Controller
 {
@@ -47,7 +48,11 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        //
+        $this->authorize('update', $character);
+
+        return view('characters.edit', [
+            'character' => $character
+        ]);
     }
 
     /**
@@ -55,7 +60,48 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
-        //
+        $this->authorize('update', $character);
+
+        $d = $request->get('defence');
+        $s = $request->get('strength');
+        $a = $request->get('accuracy');
+        $m = $request->get('magic');
+        $stats = $d + $s + $a + $m;
+
+        $request->merge(['stats' => $stats]);
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'defence' => 'required|numeric|min:0|max:3',
+            'strength' => 'required|numeric|min:0|max:20',
+            'accuracy' => 'required|numeric|min:0|max:20',
+            'magic' => 'required|numeric|min:0|max:20',
+            'stats' => 'numeric|min:20|max:20',
+        ], [
+            'name.required' => 'Adj meg egy nevet!',
+            'defence.required' => 'Add meg a védelem értékét!',
+            'defence.numeric' => 'A védelemnek számnak kell lennie!',
+            'defence.min' => 'A védelemnek minimum :min-nek kell lennie!',
+            'defence.max' => 'A védelem maximum :max lehet!',
+            'strength.required' => 'Add meg a támadás értékét!',
+            'strength.numeric' => 'A támadásnak számnak kell lennie!',
+            'strength.min' => 'A támadásnak minimum :min-nek kell lennie!',
+            'strength.max' => 'A támadás maximum :max lehet!',
+            'accuracy.required' => 'Add meg a pontosság értékét!',
+            'accuracy.numeric' => 'A pontosságnak számnak kell lennie!',
+            'accuracy.min' => 'A pontosságnak minimum :min-nek kell lennie!',
+            'accuracy.max' => 'A pontosság maximum :max lehet!',
+            'magic.required' => 'Add meg a mágia értékét!',
+            'magic.numeric' => 'A mágiának számnak kell lennie!',
+            'magic.min' => 'A mágiának minimum :min-nek kell lennie!',
+            'magic.max' => 'A mágia maximum :max lehet!',
+            'stats.min' => 'A statok összegének 20-nak kell lennie!',
+            'stats.max' => 'A statok összegének 20-nak kell lennie!',
+        ]);
+
+        $character->update($validated);
+        Session::flash('character-updated', $character->title);
+        return redirect()->route('characters.index');
     }
 
     /**
@@ -63,6 +109,9 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $this -> authorize('delete', $character);
+
+        $character->delete();
+        return redirect() -> route('characters.index');
     }
 }

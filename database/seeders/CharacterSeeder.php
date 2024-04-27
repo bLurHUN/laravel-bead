@@ -19,7 +19,7 @@ class CharacterSeeder extends Seeder
             'name' => fake()->firstName(),
             'user_id' => User::all()->where('admin', '=', true)->random()->id,
             'enemy' => true,
-            'defence' => rand(1, 20),
+            'defence' => rand(1, 3),
             'strength' => rand(1, 20),
             'accuracy' => rand(1, 20),
             'magic' => rand(1, 20),
