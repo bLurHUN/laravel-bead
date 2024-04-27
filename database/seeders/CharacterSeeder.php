@@ -15,14 +15,27 @@ class CharacterSeeder extends Seeder
     public function run(): void
     {
         // Egy fix enemy character tesztelés miatt
+        $stats = 20;
+
+        $defence = rand(0, 3);
+        $stats -= $defence;
+
+        $accuracy = rand(0, $stats);
+        $stats -= $accuracy;
+
+        $magic = rand(0, $stats);
+        $stats -= $magic;
+
+        $strength = $stats;
+
         DB::table('characters')->insert([
             'name' => fake()->firstName(),
             'user_id' => User::all()->where('admin', '=', true)->random()->id,
             'enemy' => true,
-            'defence' => rand(1, 3),
-            'strength' => rand(1, 20),
-            'accuracy' => rand(1, 20),
-            'magic' => rand(1, 20),
+            'defence' => $defence,
+            'strength' => $strength,
+            'accuracy' => $accuracy,
+            'magic' => $magic,
         ]);
 
 
@@ -35,14 +48,28 @@ class CharacterSeeder extends Seeder
                 $user_id = User::all()->where('admin', '=', false)->random()->id;
             }
 
+            $stats = 20;
+
+            $defence = rand(1, 3);
+            $stats -= $defence;
+
+            $accuracy = rand(1, $stats);
+            $stats -= $accuracy;
+
+            $magic = rand(1, $stats);
+            $stats -= $magic;
+
+            $strength = $stats;
+
+
             DB::table('characters')->insert([
                 'name' => fake()->firstName(),
                 'user_id' => $user_id,
                 'enemy' => $enemy,
-                'defence' => rand(1, 20),
-                'strength' => rand(1, 20),
-                'accuracy' => rand(1, 20),
-                'magic' => rand(1, 20),
+                'defence' => $defence,
+                'strength' => $strength,
+                'accuracy' => $accuracy,
+                'magic' => $magic,
             ]);
         }
     }

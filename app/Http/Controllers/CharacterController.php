@@ -156,6 +156,6 @@ class CharacterController extends Controller
         $this -> authorize('delete', $character);
 
         $character->delete();
-        return redirect() -> route('characters.index');
+        return redirect()->route('characters.index');
     }
 }

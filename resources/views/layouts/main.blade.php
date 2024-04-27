@@ -18,9 +18,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     @auth
-                    <li>
-                        <a class="nav-link" aria-current="page" href={{ route('characters.index') }}>Karakterek</a>
-                    </li>
+                        <li>
+                            <a class="nav-link" aria-current="page" href={{ route('characters.index') }}>Karakterek</a>
+                        </li>
+                    @if(Auth::user()->admin)
+                        <li>
+                            <a class="nav-link" aria-current="page" href={{ route('places.index') }}>Helyszínek</a>
+                        </li>
+                    @endif
                     @endauth
                 </ul>
             </div>
