@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('contests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
             $table->string('win');
             $table->string('history');
             $table->timestamps();

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('character_contest', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('character_id')->constrained()->onDelete('cascade');
-            $table->foreignId('contest_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contest_id')->constrained('contests')->onDelete('cascade');
+            $table->foreignId('character_id')->constrained('characters')->onDelete('cascade');
+            $table->primary(['contest_id', 'character_id']);
             $table->float('hero_hp')->default(20);
             $table->float('enemy_hp')->default(20);
             $table->timestamps();
