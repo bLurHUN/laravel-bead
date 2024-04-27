@@ -9,6 +9,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
+Route::get('/characters/{character}', [CharacterController::class, 'show'])->name('characters.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

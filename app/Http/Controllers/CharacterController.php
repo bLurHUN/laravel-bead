@@ -15,7 +15,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters = User::findOrFail(Auth::id())->characters;
-        return view('characters', ['characters' => $characters]);
+        return view('characters.index', ['characters' => $characters]);
     }
 
     /**
@@ -39,7 +39,7 @@ class CharacterController extends Controller
      */
     public function show(Character $character)
     {
-        //
+        return view('characters.show', ['character' => $character]);
     }
 
     /**

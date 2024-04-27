@@ -22,7 +22,7 @@
                 <td>{{ $c->strength }}</td>
                 <td>{{ $c->accuracy }}</td>
                 <td>{{ $c->magic }}</td>
-                <td><a href="" class="btn btn-primary">Részletek</a></td>
+                <td><a href="{{ route('characters.show', [ 'character' => $c ]) }}" class="btn btn-primary">Részletek</a></td>
             </tr>
         @endforeach
         </tbody>
