@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
@@ -12,7 +14,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $characters = User::find(Auth::id())->characters;
+        return view('characters', ['characters' => $characters]);
     }
 
     /**

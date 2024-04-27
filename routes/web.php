@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
