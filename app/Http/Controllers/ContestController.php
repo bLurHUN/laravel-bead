@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contest;
+use App\Models\Place;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContestController extends Controller
 {
@@ -27,15 +30,26 @@ class ContestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Contest::class);
+
+        $data = $request->all();
+
+        $data['win'] = false;
+        $data['history'] = "20e 20h";
+        $data['user_id'] = Auth::id();
+        $data['place_id'] = Place::all()->random()->id;
+
+        $contest = Contest::create($data);
+        Session::flash('contest-created', $contest->name);
+        return redirect()->route('contests.show', ['contest' => $contest]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Contest $contest)
     {
-        //
+        return view('contests.show', ['contest' => $contest]);
     }
 
     /**

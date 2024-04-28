@@ -16,8 +16,13 @@
         @endforeach
     </ul>
 
+    <form action="{{ route('contests.store') }}" method="POST">
+        @csrf
+        <a href="#" class="btn btn-success" onclick="this.closest('form').submit()">Új mérkőzés</a>
+    </form>
+
     @can ('update', $character)
-        <a class="btn btn-primary mb-1" href="{{ route('characters.edit', ['character' => $character ]) }}">Szerkesztés</a>
+        <a class="btn btn-warning mb-1" href="{{ route('characters.edit', ['character' => $character ]) }}">Szerkesztés</a>
     @endcan
 
     @can ('delete', $character)

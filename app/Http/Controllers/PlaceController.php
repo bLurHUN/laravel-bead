@@ -26,6 +26,9 @@ class PlaceController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->admin) {
+            return redirect('/');
+        }
         $this->authorize('create', Place::class);
 
         return view('places.create');
@@ -64,6 +67,9 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
+        if (!Auth::user()->admin) {
+            return redirect('/');
+        }
         $this->authorize('update', Place::class);
 
         return view('places.edit', [
